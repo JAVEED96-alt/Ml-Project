@@ -30,7 +30,9 @@ class CustomData:
                  gender: str,
                  race_ethnicity: str,
                  parental_level_of_education,
-                 lunch: str,
+                 StudyHoursPerDay:str,
+                 AttendancePercentage:str,
+                 NumSubjects: str,
                  test_preparation_course: str,
                  reading_score: int,
                  writing_score: int):
@@ -41,7 +43,11 @@ class CustomData:
 
                  self.parental_level_of_education = parental_level_of_education
 
-                 self.lunch = lunch
+                 self.StudyHoursPerDay = StudyHoursPerDay
+
+                 self.AttendancePercentage = AttendancePercentage
+
+                 self.NumSubjects = NumSubjects
 
                  self.test_preparation_course = test_preparation_course
 
@@ -55,7 +61,9 @@ class CustomData:
                 "gender": [self.gender],
                 "race_ethnicity": [self.race_ethnicity],
                 "parental_level_of_education": [self.parental_level_of_education],
-                "lunch": [self.lunch],
+                "StudyHoursPerDay": [self.StudyHoursPerDay],
+                "AttendancePercentage": [self.AttendancePercentage],
+                "NumSubjects": [self.NumSubjects],
                 "test_preparation_course": [self.test_preparation_course],
                 "reading_score": [self.reading_score],
                 "writing_score": [self.writing_score],

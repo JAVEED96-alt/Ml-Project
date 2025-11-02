@@ -1,111 +1,150 @@
-<html>
-<body>
-    <div class="login">
-       <h1>Student Exam Performance Indicator</h1>
-   
-       <form action="{{ url_for('predict_datapoint')}}" method="post">
-        <h1>
-            <legend>Student Exam Performance Prediction</legend>
-        </h1>
-        <div class="mb-3">
-            <label class="form-label">Gender</label>
-            <select class="form-control" name="gender" placeholder="Enter you Gender" required>
-                <option class="placeholder" selected disabled value="">Select your Gender</option>
-                <option value="male">
-                    Male
-                </option>
-                <option value="female">
-                    Female
-                </option>
-            </select>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Exam Performance Predictor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 min-h-screen flex flex-col">
+  <!-- 🌟 Navbar -->
+  <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <span class="text-2xl font-bold text-indigo-700">🎓 Student Predictor</span>
+      </a>
+      <div class="hidden md:flex space-x-6">
+        <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+        <a href="#about" class="text-gray-700 hover:text-indigo-600 font-medium">About</a>
+        <a href="#predict" class="text-gray-700 hover:text-indigo-600 font-medium">Predict</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 🧠 Hero Section -->
+  <section class="flex flex-col items-center justify-center text-center py-16 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Student Exam Performance Predictor</h1>
+    <p class="text-lg md:text-xl max-w-2xl">
+      Predict a student’s math performance based on their background, learning habits, and preparation level.
+    </p>
+  </section>
+
+  <!-- 🧾 Prediction Form -->
+  <main id="predict" class="flex-grow flex items-center justify-center py-12 px-6">
+    <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-2xl border border-gray-100">
+      <h2 class="text-2xl font-bold text-center text-indigo-700 mb-6">📊 Enter Student Details</h2>
+
+      <form action="{{ url_for('predict_datapoint') }}" method="post" class="space-y-5">
+        <!-- Gender -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Gender</label>
+          <select name="gender" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500" required>
+            <option selected disabled value="">Select your Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Race or Ethnicity</label>
-            <select class="form-control" name="ethnicity" placeholder="Enter you ethnicity" required>
-                <option class="placeholder" selected disabled value="">Select Ethnicity</option>
-                <option value="group A">
-                    Group A
-                </option>
-                <option value="group B">
-                    Group B
-                </option>
-                <option value="group C">
-                    Group C
-                </option>
-                <option value="group D">
-                    Group D
-                </option>
-                <option value="group E">
-                    Group E
-                </option>
-            </select>
+
+        <!-- Ethnicity -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Race or Ethnicity</label>
+          <select name="ethnicity" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500" required>
+            <option selected disabled value="">Select Ethnicity</option>
+            <option value="group A">Group A</option>
+            <option value="group B">Group B</option>
+            <option value="group C">Group C</option>
+            <option value="group D">Group D</option>
+            <option value="group E">Group E</option>
+          </select>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Parental Level of Education</label>
-            <select class="form-control" name="parental_level_of_education"
-                placeholder="Enter you Parent Education" required>
-                <option class="placeholder" selected disabled value="">Select Parent Education</option>
-                <option value="associate's degree">
-                    associate's degree
-                </option>
-                <option value="bachelor's degree">
-                    bachelor's degree
-                </option>
-                <option value="high school">
-                    high school
-                </option>
-                <option value="master's degree">
-                    master's degree
-                </option>
-                <option value="some college">
-                    some college
-                </option>
-                <option value="some high school">
-                    some high school
-                </option>
-            </select>
+
+        <!-- Parental Education -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Parental Level of Education</label>
+          <select name="parental_level_of_education" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500" required>
+            <option selected disabled value="">Select Parent Education</option>
+            <option value="associate's degree">Associate's degree</option>
+            <option value="bachelor's degree">Bachelor's degree</option>
+            <option value="high school">High school</option>
+            <option value="master's degree">Master's degree</option>
+            <option value="some college">Some college</option>
+            <option value="some high school">Some high school</option>
+          </select>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Lunch Type</label>
-            <select class="form-control" name="lunch" placeholder="Enter you Lunch" required>
-                <option class="placeholder" selected disabled value="">Select Lunch Type</option>
-                <option value="free/reduced">
-                    free/reduced
-                </option>
-                <option value="standard">
-                    standard
-                </option>
-            </select>
+
+        <!-- Test Preparation -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Test Preparation Course</label>
+          <select name="test_preparation_course" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500" required>
+            <option selected disabled value="">Select Test Course</option>
+            <option value="none">None</option>
+            <option value="completed">Completed</option>
+          </select>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Test preparation Course</label>
-            <select class="form-control" name="test_preparation_course" placeholder="Enter you Course"
-                required>
-                <option class="placeholder" selected disabled value="">Select Test_course</option>
-                <option value="none">
-                    None
-                </option>
-                <option value="completed">
-                    Completed
-                </option>
-            </select>
+
+        <!-- Study Hours Per Day -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Study Hours per Day</label>
+          <input type="number" name="study_hours_per_day" min="0" max="24" placeholder="Enter Study Hours (0–24)" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500" required>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Writing Score out of 100</label>
-            <input class="form-control" type="number" name="reading_score"
-                placeholder="Enter your Reading score" min='0' max='100' />
+
+        <!-- Attendance Percentage -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Attendance Percentage</label>
+          <input type="number" name="attendance_percentage" min="0" max="100" placeholder="Enter Attendance (%)" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500" required>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Reading Score out of 100</label>
-            <input class="form-control" type="number" name="writing_score"
-                placeholder="Enter your Reading Score" min='0' max='100' />
+
+        <!-- Number of Subjects -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Number of Subjects</label>
+          <input type="number" name="number_of_subjects" min="1" max="15" placeholder="Enter Number of Subjects" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500" required>
         </div>
-        <div class="mb-3">
-            <input class="btn btn-primary" type="submit" value="Predict your Maths Score" required />
+
+        <!-- Writing Score -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Writing Score (out of 100)</label>
+          <input type="number" name="writing_score" min="0" max="100" placeholder="Enter your Writing Score" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500" required>
         </div>
-    </form>
-    <h2>
-       THE  prediction is {{results}}
-    </h2>
-   <body>
+
+        <!-- Reading Score -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Reading Score (out of 100)</label>
+          <input type="number" name="reading_score" min="0" max="100" placeholder="Enter your Reading Score" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500" required>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg shadow-md transition duration-300">
+            Predict Your Math Score
+          </button>
+        </div>
+      </form>
+
+      <!-- Prediction Result -->
+      {% if results %}
+      <div class="mt-8 bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded-lg">
+        <h3 class="text-lg font-semibold text-indigo-700">🎯 Prediction Result:</h3>
+        <p class="text-gray-800 mt-2 text-center text-xl font-bold">{{ results }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </main>
+
+  <!-- ℹ️ About Section -->
+  <section id="about" class="bg-white py-12 text-center shadow-inner">
+    <h2 class="text-2xl font-bold text-indigo-700 mb-4">About This Project</h2>
+    <p class="max-w-2xl mx-auto text-gray-600">
+      This web app predicts a student’s expected math performance using machine learning. It takes into account socio-economic and academic factors — including study habits, attendance, and number of subjects — to help educators identify improvement areas.
+    </p>
+  </section>
+
+  <!-- ⚙️ Footer -->
+  <footer class="bg-indigo-700 text-white py-6 mt-auto">
+    <div class="max-w-7xl mx-auto text-center text-sm">
+      <p>© 2025 Student Exam Performance Predictor | Built with 💻 Flask & Tailwind CSS</p>
+      <p class="mt-1 text-indigo-200">Developed by <span class="font-semibold text-white">Your Name</span></p>
+    </div>
+  </footer>
+</body>
 </html>
